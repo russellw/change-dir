@@ -8,6 +8,12 @@ function show-help {
 	'Be a deep subdirectory, skipping intermediate levels'
 	'Be a file existing in the destination subdirectory'
 	'Contain wildcards'
+	''
+	'cx'
+	'Go back where you last came from'
+	''
+	'cx .'
+	'Remember the current directory'
 	exit
 }
 
@@ -17,9 +23,15 @@ function show-version {
 }
 
 $arg = $args[0]
+
 if (!$arg) {
-	show-help
+	try {
+		$d = cat($env:temp + '\cx-last.txt') -erroraction stop
+		cd $d
+	} catch {}
+	exit
 }
+
 if ($arg.startswith('/')) {
 	$arg = '-' + $arg.substring(1)
 }
@@ -54,6 +66,11 @@ if ($arg.contains(':')) {
 }
 if ($arg.contains('\')) {
 	cd $arg
+	exit
+}
+
+new-item -type file -path $env:temp -name 'cx-last.txt' -force -value $(pwd) | out-null
+if ($arg -eq ".") {
 	exit
 }
 

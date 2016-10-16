@@ -8,13 +8,13 @@ Given
 first\second\third
 ```
 
-Instead of
+Instead of:
 
 ```
 cd first\second\third
 ```
 
-Type
+Type:
 
 ```
 cx third
@@ -28,13 +28,13 @@ Given
 first\second\third\file.txt
 ```
 
-Instead of
+Instead of:
 
 ```
 cd first\second\third
 ```
 
-Type
+Type:
 
 ```
 cx file.txt
@@ -48,13 +48,13 @@ Given
 first\second\third-subdirectory-with-long-name
 ```
 
-Instead of
+Instead of:
 
 ```
 cd first\second\third
 ```
 
-Type
+Type:
 
 ```
 cx third*

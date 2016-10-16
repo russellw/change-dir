@@ -82,6 +82,10 @@ if ($arg.contains('\')) {
 	cd $arg
 	exit
 }
+if (test-path $arg) {
+	cd $arg
+	exit
+}
 
 # Search
 $files = ls -r

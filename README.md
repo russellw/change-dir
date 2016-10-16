@@ -60,6 +60,22 @@ Type:
 cx third*
 ```
 
+### Go back where you last came from
+
+An unadorned
+
+```
+cx
+```
+
+goes back to the last remembered directory.
+
+```
+cx .
+```
+
+remembers the current directory.
+
 ### Eliminate hidden state between drives
 
 Windows tracks current directory separately for each drive letter; this hidden state creates opportunities to make mistakes when performing file operations between multiple drives.

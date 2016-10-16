@@ -65,7 +65,7 @@ switch ($arg) {
 }
 
 # Remember the current directory
-new-item -type file -path $env:temp -name 'cx-last.txt' -force -value $(pwd) | out-null
+new-item -type file -path $env:temp -name 'cx-last.txt' -force -value (pwd) | out-null
 if ($arg -eq ".") {
 	exit
 }

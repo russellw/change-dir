@@ -24,6 +24,7 @@ function show-version {
 
 $arg = $args[0]
 
+# Go back where you last came from
 if (!$arg) {
 	try {
 		$d = cat($env:temp + '\cx-last.txt') -erroraction stop
@@ -35,6 +36,7 @@ if (!$arg) {
 	exit
 }
 
+# Options
 if ($arg.startswith('/')) {
 	$arg = '-' + $arg.substring(1)
 }
@@ -62,21 +64,26 @@ switch ($arg) {
 	}
 }
 
-if ($arg.contains(':')) {
-	cd '\'
-	cd $arg
-	exit
-}
-if ($arg.contains('\')) {
-	cd $arg
-	exit
-}
-
+# Remember the current directory
 new-item -type file -path $env:temp -name 'cx-last.txt' -force -value $(pwd) | out-null
 if ($arg -eq ".") {
 	exit
 }
 
+# Drive
+if ($arg.contains(':')) {
+	cd '\'
+	cd $arg
+	exit
+}
+
+# Specific path
+if ($arg.contains('\')) {
+	cd $arg
+	exit
+}
+
+# Search
 $files = ls -r
 foreach ($file in $files) {
 	if ($file.name -like $arg) {

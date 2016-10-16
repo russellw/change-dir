@@ -47,6 +47,11 @@ switch ($arg) {
 	}
 }
 
+if ($arg.startswith('\')) {
+	cd $arg
+	exit
+}
+
 $files = ls -r
 foreach ($file in $files) {
 	if ($file.name -like $arg) {

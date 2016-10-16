@@ -47,7 +47,12 @@ switch ($arg) {
 	}
 }
 
-if ($arg.startswith('\')) {
+if ($arg.contains(':')) {
+	cd '\'
+	cd $arg
+	exit
+}
+if ($arg.contains('\')) {
 	cd $arg
 	exit
 }

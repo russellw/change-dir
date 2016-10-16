@@ -59,3 +59,13 @@ Type:
 ```
 cx third*
 ```
+
+### Eliminate hidden state between drives
+
+Windows tracks current directory separately for each drive letter; this hidden state creates opportunities to make mistakes when performing file operations between multiple drives.
+
+```
+cx d:foo
+```
+
+changes to the root directory of the drive you are currently on, before going to the destination drive.

@@ -1,42 +1,48 @@
 function show-help {
-	"Change directory, extended"
-	"https://github.com/russellw/change-dir"
-	""
-	"cx <where>"
-	""
-	"<where> can:"
-	"Be a deep subdirectory, skipping intermediate levels"
-	"Be a file existing in the destination subdirectory"
-	"Contain wildcards"
+	'Change directory, extended'
+	'https://github.com/russellw/change-dir'
+	''
+	'cx <where>'
+	''
+	'<where> can:'
+	'Be a deep subdirectory, skipping intermediate levels'
+	'Be a file existing in the destination subdirectory'
+	'Contain wildcards'
 	exit
 }
 
 function show-version {
-	"cx version 1"
+	'cx version 1'
 	exit
 }
 
 $arg = $args[0]
+if (!$arg) {
+	show-help
+}
+if ($arg.startswith('/')) {
+	$arg = '-' + $arg.substring(1)
+}
+if ($arg.startswith('--')) {
+	$arg = $arg.substring(1)
+}
 switch ($arg) {
-	"" {
+	'-?' {
 		show-help
 	}
-	"-?" {
+	'-h' {
 		show-help
 	}
-	"-h" {
+	'-help' {
 		show-help
 	}
-	"-help" {
-		show-help
-	}
-	"-v" {
+	'-v' {
 		show-version
 	}
-	"-ver" {
+	'-ver' {
 		show-version
 	}
-	"-version" {
+	'-version' {
 		show-version
 	}
 }
@@ -53,4 +59,4 @@ foreach ($file in $files) {
 		exit
 	}
 }
-"Not found"
+'Not found'

@@ -27,6 +27,9 @@ $arg = $args[0]
 if (!$arg) {
 	try {
 		$d = cat($env:temp + '\cx-last.txt') -erroraction stop
+		if ($d[0] -ne (pwd).path[0]) {
+			cd '\'
+		}
 		cd $d
 	} catch {}
 	exit

@@ -100,4 +100,5 @@ foreach ($file in $files) {
 		exit
 	}
 }
-'Not found'
+$msg = "cx : Cannot find '{0}' because it does not exist." -f $arg
+throw new-object System.IO.FileNotFoundException($msg)
